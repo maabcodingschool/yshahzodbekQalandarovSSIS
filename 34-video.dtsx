@@ -1,0 +1,144 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/27/2021 2:18:46 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-NB4G1EBO"
+  DTS:CreatorName="LAPTOP-NB4G1EBO\maabc"
+  DTS:DTSID="{6E32645D-499B-47B6-B683-69D1B213A1B8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{848194AF-57DA-4B5C-B2FC-7D6BB5641D0B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{201524D1-A1D7-4328-820B-64EA3879C66F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rowcounter">
+      <DTS:VariableValue
+        DTS:DataType="3">100</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3B39E554-B26A-4FAC-9A97-AA43AADB53C9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\dft_load_customer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F04A89F4-25D1-4000-8A77-B15520CCAF9A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_load_customer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[success Constraint with rowcounter]"
+      DTS:CreationName=""
+      DTS:DTSID="{06F25557-9040-48B0-8EDF-91AB48C7CE29}"
+      DTS:EvalOp="4"
+      DTS:Expression="@rowcounter&gt;100"
+      DTS:From="Package\dft_load_customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="success Constraint with rowcounter"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\dft_load_customer"
+          TopLeft="186.874997215345,60.2105274491033" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task 1"
+          TopLeft="176.24999737367,156.684213475507" />
+        <AnnotationLayout
+          Text="this dft loads customer data from text file to sql table&#xD;&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="310.666666666667,60"
+          Id="dd124f57-b8e7-42e3-aa10-36db1848939a"
+          TopLeft="454.374993229285,60.2105274491033" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[success Constraint with rowcounter]"
+          TopLeft="270.874997215345,102.87719411577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.2916665083417,53.8070193597374"
+              Start="0,0"
+              End="-13.2916665083417,46.3070193597374">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9035096798687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.9035096798687"
+                    Point2="0,26.9035096798687"
+                    Point3="-4,26.9035096798687" />
+                  <mssgle:LineSegment
+                    End="-9.29166650834173,26.9035096798687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.29166650834173,26.9035096798687"
+                    Point2="-13.2916665083417,26.9035096798687"
+                    Point3="-13.2916665083417,30.9035096798687" />
+                  <mssgle:LineSegment
+                    End="-13.2916665083417,46.3070193597374" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-94.2181770041709,31.9035096798687,175.1446875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <PrecedenceConstraint
+    design-time-name="Package.PrecedenceConstraints[success Constraint with rowcounter]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

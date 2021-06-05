@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2021 4:54:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-NB4G1EBO"
+  DTS:CreatorName="LAPTOP-NB4G1EBO\maabc"
+  DTS:DTSID="{9D68B771-1E21-43B2-8927-4B8AC7B65C20}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{95F409D3-35A0-47EF-98DE-766C4047A232}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{04B99011-7847-4C4B-8D54-BCA4DFEF622C}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\maabc\OneDrive\Documents\4-vid.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{20ABF676-CDCF-4273-9F1C-068793189BDF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="numrow">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\count number of finalists"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{705A9E76-8507-42BE-BAFD-72387AF5D77A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="count number of finalists"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\count number of finalists\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\count number of finalists\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[id]"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[name]"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[series]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[series]"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[series]"
+                      name="series"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[category]"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[category]"
+                      name="category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[mentor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[mentor]"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[mentor]"
+                      name="mentor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[finished]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[finished]"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].Columns[finished]"
+                      name="finished"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[id]"
+                      dataType="r8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[series]"
+                      dataType="r8"
+                      name="series" />
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[category]"
+                      dataType="wstr"
+                      length="255"
+                      name="category" />
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[mentor]"
+                      dataType="wstr"
+                      length="255"
+                      name="mentor" />
+                    <externalMetadataColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output].ExternalColumns[finished]"
+                      dataType="r8"
+                      name="finished" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[id]"
+                      dataType="r8"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[series]"
+                      dataType="r8"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[series]"
+                      name="series" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[category]"
+                      name="category" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[mentor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[mentor]"
+                      name="mentor" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[finished]"
+                      dataType="r8"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[finished]"
+                      name="finished" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\count number of finalists\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\count number of finalists\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::numrow</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\count number of finalists\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\count number of finalists\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\count number of finalists\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\count number of finalists.Paths[Excel Source Output]"
+              endId="Package\count number of finalists\Row Count.Inputs[Row Count Input 1]"
+              name="Excel Source Output"
+              startId="Package\count number of finalists\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\display number of rows"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{4A5A9526-00AC-4100-AA16-BB2999AD7424}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="display number of rows"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_4b2cbb2bf38c42c890ad611871bb7e07"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="VisualBasic"
+          ReadOnlyVariables="User::numrow">
+          <ProjectItem
+            Name="ScriptMain.vb"
+            Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
+'The Script Task allows you to perform virtually any operation that can be accomplished in
+'a .Net application within the context of an Integration Services control flow. 
+
+'Expand the other regions which have "Help" prefixes for examples of specific ways to use
+'Integration Services features within this script task.
+#End Region
+
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+#End Region
+
+'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+'or parent of this class.
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+#Region "Help:  Using Integration Services variables and parameters in a script"
+    'To use a variable in this script, first ensure that the variable has been added to 
+    'either the list contained in the ReadOnlyVariables property or the list contained in 
+    'the ReadWriteVariables property of this script task, according to whether or not your
+    'code needs to write to the variable.  To add the variable, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and 
+    'ReadWriteVariables properties in the Script Transformation Editor window.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable:
+    ' startTime = Dts.Variables("System::StartTime").Value
+
+    'Example of writing to a variable:
+    ' Dts.Variables("User::myStringVariable").Value = "new value"
+
+    'Example of reading from a package parameter:
+    ' batchId = Dts.Variables("$Package::batchId").Value
+
+    'Example of reading from a project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").Value
+
+    'Example of reading from a sensitive project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
+#End Region
+
+#Region "Help:  Firing Integration Services events from a script"
+    'This script task can fire events for logging purposes.
+
+    'Example of firing an error event:
+    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
+
+    'Example of firing an information event:
+    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
+#End Region
+
+#Region "Help:  Using Integration Services connection managers in a script"
+    'Some types of connection managers can be used in this script task.  See the topic 
+    '"Working with Connection Managers Programatically" for details.
+
+    'Example of using an ADO.Net connection manager:
+    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
+    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
+
+    'Example of using a File connection manager
+    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
+#End Region
+
+    'This method is called when this script task executes in the control flow.
+    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+    'To open Help, press F1.
+
+    Public Sub Main()
+        '
+        ' Add your code here
+        '
+        Dts.TaskResult = ScriptResults.Success
+    End Sub
+
+#Region "ScriptResults declaration"
+    'This enum provides a convenient shorthand within the scope of this class for setting the
+    'result of the script.
+
+    'This code was generated automatically.
+    Enum ScriptResults
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    End Enum
+
+#End Region
+
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="ST_4b2cbb2bf38c42c890ad611871bb7e07.vbproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a17e8a1d-2202-4f13-92ef-1520f5379cf7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>My Project</AppDesignerFolder>
+    <RootNamespace>ST_4b2cbb2bf38c42c890ad611871bb7e07</RootNamespace>
+    <AssemblyName>ST_4b2cbb2bf38c42c890ad611871bb7e07</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AppDesigner Include="My Project\" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptMain.vb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <!-- Include the build rules for a VB project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptTask"
+                           HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}"
+                           ApplicationType="usd"
+                           Language="vb"
+                           TemplatesPath=""
+                           DebugInfoCommandLine=""
+                           DebugInfoWorkingDir=""
+                           IconImageList=""/>
+
+        <Host Name="ScriptTask" IconIndex="">
+        </Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\AssemblyInfo.vb"
+            Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_4b2cbb2bf38c42c890ad611871bb7e07")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("HP Inc.")> 
+<Assembly: AssemblyProduct("ST_4b2cbb2bf38c42c890ad611871bb7e07")> 
+<Assembly: AssemblyCopyright("Copyright @ HP Inc. 2021")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("845e1cf3-33f6-4992-89d7-ca7bd60461e6")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:Language>msBuild</msb:Language>
+    <msb:CodeName>ST_4b2cbb2bf38c42c890ad611871bb7e07</msb:CodeName>
+    <msb:DisplayName>ST_4b2cbb2bf38c42c890ad611871bb7e07</msb:DisplayName>
+    <msb:ProjectId>{A58E6A09-F1FA-4709-9877-F542FCAAA720}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_4b2cbb2bf38c42c890ad611871bb7e07.vbproj" />
+    <msb:File Include="My Project\AssemblyInfo.vb" />
+    <msb:File Include="ScriptMain.vb" />
+    <msb:File Include="My Project\Resources.resx" />
+    <msb:File Include="My Project\Resources.Designer.vb" />
+    <msb:File Include="My Project\Settings.settings" />
+    <msb:File Include="My Project\Settings.Designer.vb" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="My Project\Resources.Designer.vb"
+            Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+          <BinaryItem
+            Name="ST_4b2cbb2bf38c42c890ad611871bb7e07.dll">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
+AQCiIAAAAAATCBwGJwEBAK4gAAAAABMImwYsAQEAuiAAAAAAAxhVBgYAAQDCIAAAAAAWCPAFMQEB
+AO4gAAAAABYIEAE2AQEA9SAAAAAAFggcATsBAQD9IAAAAAARGFsGGQECAA4hAAAAAAYYVQYGAAIA
+GCEAAAAAFgjYA0EBAgB0IQAAAAAGGFUGBgACAHwhAAAAAAYAJQUGAAIAiiEAAAAAxgLpB3UAAgCY
+IQAAAADGAtAAegADAKAhAAAAAIMAAAFGAQMArCEAAAAAxgImBH4AAwC0IQAAAAARAG4ASwEDANQh
+AAAAAAEAWgBTAQQAuiAAAAAABhhVBgYABQDgIQAAAAADCLcASgAFABQiAAAAAAYYVQYGAAUAAAAB
+APUDAAABAI4FAAABAMcAAAABAMcACQBVBgEAEQBVBgYAGQBVBgoAKQBVBhAAMQBVBhAAOQBVBhAA
+QQBVBhAASQBVBhAAUQBVBhAAWQBVBhUAYQBVBhUAaQBVBhAAcQBVBhAAeQBVBhAAgQBVBhoAkQBV
+BiAAqQBVBgYAsQBVBgYAuQBVBgYA0QBVBiYA6QBVBhAACQFVBgYAEQFVBgYAmQBVBgYAoQBVBgYA
+DABVBgYAFABVBgYAHABVBgYAJABVBgYADAC3AEoAFAC3AEoAHAC3AEoAJAC3AEoAwQBVBgYA2QDu
+AE8A2QB5CFcA8QBVBl0AQQHsA2UAAQFVBgYASQElBmoASQE0CGoAGQFVBgYAGQEHCG8AUQE5CAEA
+wQDpB3UAwQDQAHoAwQAmBH4AWQGoAIoANABICKEAPADYA0oAPADiA7gAPABVBgYACAAsANkACAAw
+AN4AKQCrABkDLgALAIMBLgATAIwBLgAbAKsBLgAjALQBLgArAN0BLgAzAOMBLgA7ALQBLgBDAPAB
+LgBLAN0BLgBTAA4CLgBbAN0BLgBjABQCLgBrAD4CLgBzAEsCQACLAN4AQACDAJUCQwB7AJ4CQwCD
+AJUCSQCrACoDYwB7AJ4CYwCDAJUCaQCrAD4DgACLAN4AgwCTAN4AgwCbAN4AgwB7AJ4CiQCrAEsD
+oACLAN4AqQCDAKsBwACLAN4AyQCDAKsB4ACLAN4A4wC7AN4A4wBTAN0B6QCzAN4AAwGDAJUCAwGj
+ALcCIwGDAJUCIwFbAN0BIAKDAJUCIAKLAN4AQAKDAJUCQAKLAN4AYAKDAJUCYAKLAN4AgAKDAJUC
+gAKLAN4AoAKLAN4AwAKLAN4A4AKLAN4A4AKDAJUCAAOLAN4AIAOLAN4AIAODAJUCggCVAAQAAQAF
+AAUABgAHAAkACAAAADoGWwEAADwFYAEAACAGZQEAAK0GagEAAPQFbwEAACwBdAEAAPUDeQEAALsA
+fgECAAQAAwACAAUABQACAAYABwACAAcACQACAAkACwACAAoADQABAAsADQACAA4ADwACABgAEQAu
+ADUAPABDAIcAmgCpALAABIAAAAEAAAAAAAAAAAAAAAAAKwAAAAQAAAAAAAAAAAAAAL4AiQAAAAAA
+BAAAAAAAAAAAAAAAvgD2BAAAAAAKAAAAAAAAAAAAAADHAJIAAAAAAA8AAAAAAAAAAAAAANAANAQA
+AAAAAAAAAAEAAACXBwAACAAEAAkABAAKAAcAAAAQABIAWAAAABAAKwBYAAAAAAAtAFgAYQCQAGEA
+swAAAAAAAENvbnRleHRWYWx1ZWAxAFRocmVhZFNhZmVPYmplY3RQcm92aWRlcmAxAFNUXzRiMmNi
+YjJiZjM4YzQyYzg5MGFkNjExODcxYmI3ZTA3ADxNb2R1bGU+AFQARGlzcG9zZV9fSW5zdGFuY2Vf
+XwBDcmVhdGVfX0luc3RhbmNlX18AdmFsdWVfXwBtc2NvcmxpYgBNaWNyb3NvZnQuVmlzdWFsQmFz
+aWMAQ3JlYXRlSW5zdGFuY2UAZ2V0X0dldEluc3RhbmNlAGluc3RhbmNlAEdldEhhc2hDb2RlAFJ1
+bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEdldFR5cGUARmFpbHVyZQBnZXRfQ3Vs
+dHVyZQBzZXRfQ3VsdHVyZQBfcmVzQ3VsdHVyZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UA
+QXBwbGljYXRpb25CYXNlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAEVkaXRvckJyb3dzYWJsZVN0
+YXRlAEd1aWRBdHRyaWJ1dGUASGVscEtleXdvcmRBdHRyaWJ1dGUAR2VuZXJhdGVkQ29kZUF0dHJp
+YnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRp
+dG9yQnJvd3NhYmxlQXR0cmlidXRlAENvbVZpc2libGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0
+dHJpYnV0ZQBTdGFuZGFyZE1vZHVsZUF0dHJpYnV0ZQBIaWRlTW9kdWxlTmFtZUF0dHJpYnV0ZQBB
+c3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUARGVidWdn
+ZXJIaWRkZW5BdHRyaWJ1dGUAQXNzZW1ibHlGaWxlVmVyc2lvbkF0dHJpYnV0ZQBNeUdyb3VwQ29s
+bGVjdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9u
+UmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29w
+eXJpZ2h0QXR0cmlidXRlAENMU0NvbXBsaWFudEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5
+UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
+aXR5QXR0cmlidXRlAG1fVmFsdWUAZ2V0X1ZhbHVlAHNldF9WYWx1ZQBHZXRPYmplY3RWYWx1ZQBT
+eXN0ZW0uVGhyZWFkaW5nAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcATWF0aABN
+aWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuVGFz
+a3MuU2NyaXB0VGFzawBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuTXlTZXJ2aWNlcy5JbnRlcm5hbABT
+Y3JpcHRPYmplY3RNb2RlbABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU1RfNGIyY2JiMmJmMzhjNDJj
+ODkwYWQ2MTE4NzFiYjdlMDcuZGxsAFN5c3RlbQBFbnVtAFN5c3RlbS5Db21wb25lbnRNb2RlbC5E
+ZXNpZ24AU2NyaXB0TWFpbgBnZXRfQXBwbGljYXRpb24ATXlBcHBsaWNhdGlvbgBTeXN0ZW0uQ29u
+ZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBDdWx0dXJl
+SW5mbwBtX0FwcE9iamVjdFByb3ZpZGVyAG1fVXNlck9iamVjdFByb3ZpZGVyAG1fQ29tcHV0ZXJP
+YmplY3RQcm92aWRlcgBtX015V2ViU2VydmljZXNPYmplY3RQcm92aWRlcgBnZXRfUmVzb3VyY2VN
+YW5hZ2VyAFN5c3RlbS5Db2RlRG9tLkNvbXBpbGVyAGdldF9Vc2VyAEVudGVyAGdldF9Db21wdXRl
+cgBNeUNvbXB1dGVyAF9yZXNNZ3IAQWN0aXZhdG9yAC5jdG9yAC5jY3RvcgBNb25pdG9yAFN5c3Rl
+bS5EaWFnbm9zdGljcwBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuRGV2aWNlcwBnZXRfV2ViU2Vydmlj
+ZXMATXlXZWJTZXJ2aWNlcwBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuQXBwbGljYXRpb25TZXJ2aWNl
+cwBTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMATWljcm9zb2Z0LlZpc3VhbEJhc2ljLkNv
+bXBpbGVyU2VydmljZXMAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVz
+b3VyY2VzAFNUXzRiMmNiYjJiZjM4YzQyYzg5MGFkNjExODcxYmI3ZTA3Lk15LlJlc291cmNlcwBN
+eVJlc291cmNlcwBTVF80YjJjYmIyYmYzOGM0MmM4OTBhZDYxMTg3MWJiN2UwNy5SZXNvdXJjZXMu
+cmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAE15U2V0dGluZ3MARXF1YWxzAFJ1bnRpbWVIZWxwZXJz
+AFN1Y2Nlc3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAG1fU3luY09iamVjdABNeVByb2plY3QARXhp
+dABzZXRfVGFza1Jlc3VsdABtX0NvbnRleHQAU1RfNGIyY2JiMmJmMzhjNDJjODkwYWQ2MTE4NzFi
+YjdlMDcuTXkAZ2V0X0Fzc2VtYmx5AAAAADFNAHkALgBSAGUAcwBvAHUAcgBjAGUAcwAuAE0AeQBS
+AGUAcwBvAHUAcgBjAGUAcwAAAO8SwjyKoQdDsBPMX/pLkWMABCABAQgDIAABBSABARERBCABAQ4E
+IAEBAgUgAgEODgUgAQERRQcgBAEODg4OBhUSJAESDAYVEiQBEggGFRIkARJlBhUSJAESIAQgABMA
+BwABEm0RgJkFIAASgJ0HIAIBDhKAnQQAARwcBAABARwFIAASgKkEIAECHAMgAAgDIAAOBAcBHgAC
+HgAFEAEAHgAECgEeAAQHARMABhUSJAETAAcGFRJxARMABhUScQETAAITAAQKARMABSABARMACLd6
+XFYZNOCJCLA/X38R1Qo6CImEXc2AgMyRBAAAAAAEAQAAAAcGFRIkARIMBwYVEiQBEggHBhUSJAES
+ZQcGFRIkARIgAwYSeQMGEn0DBhIYAgYcAgYIAwYRKAMAAAEEAAASDAQAABIIBAAAEmUEAAASIAQA
+ABJ5BAAAEn0FAAEBEn0EAAASGAQgABJtBxABAR4AHgAHMAEBARAeAAQIABIMBAgAEggECAASZQQI
+ABIgBAgAEnkECAASfQQIABIYBCgAEwAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25U
+aHJvd3MBCAEAAgAAAAAAKAEAI1NUXzRiMmNiYjJiZjM4YzQyYzg5MGFkNjExODcxYmI3ZTA3AAAF
+AQAAAAAMAQAHSFAgSW5jLgAAHQEAGENvcHlyaWdodCBAIEhQIEluYy4gMjAyMQAABQEAAQAAKQEA
+JDg0NWUxY2YzLTMzZjYtNDk5Mi04OWQ3LWNhN2JkNjA0NjFlNgAADAEABzEuMC4wLjAAAEkBABou
+TkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBG
+cmFtZXdvcmsgNC43CAEAAQAAAAAAGAEACk15VGVtcGxhdGUIMTEuMC4wLjAAAGEBADRTeXN0ZW0u
+V2ViLlNlcnZpY2VzLlByb3RvY29scy5Tb2FwSHR0cENsaWVudFByb3RvY29sEkNyZWF0ZV9fSW5z
+dGFuY2VfXxNEaXNwb3NlX19JbnN0YW5jZV9fAAAAEAEAC015LkNvbXB1dGVyAAATAQAOTXkuQXBw
+bGljYXRpb24AAAwBAAdNeS5Vc2VyAAATAQAOTXkuV2ViU2VydmljZXMAAAC0AAAAzsrvvgEAAACR
+AAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQu
+MC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNT
+eXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAA
+GDcAAAAAAAAAAAAAMjcAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQ3AAAAAAAAAAAAAAAAX0Nv
+ckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
+AABYQAAACAQAAAAAAAAAAAAACAQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
+AL0E7/4AAAEAAAABAAAAAAAAAAEAAAAAAD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
+AAAAAACwBGgDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAEQDAAABADAAMAAwADAA
+MAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAwAAgAAQBDAG8AbQBwAGEAbgB5
+AE4AYQBtAGUAAAAAAEgAUAAgAEkAbgBjAC4AAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAA
+dABpAG8AbgAAAAAAUwBUAF8ANABiADIAYwBiAGIAMgBiAGYAMwA4AGMANAAyAGMAOAA5ADAAYQBk
+ADYAMQAxADgANwAxAGIAYgA3AGUAMAA3AAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAA
+AAAxAC4AMAAuADAALgAwAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA0
+AGIAMgBjAGIAYgAyAGIAZgAzADgAYwA0ADIAYwA4ADkAMABhAGQANgAxADEAOAA3ADEAYgBiADcA
+ZQAwADcALgBkAGwAbAAAAFYAGQABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
+AHkAcgBpAGcAaAB0ACAAQAAgAEgAUAAgAEkAbgBjAC4AIAAyADAAMgAxAAAAAAAqAAEAAQBMAGUA
+ZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABG
+AGkAbABlAG4AYQBtAGUAAABTAFQAXwA0AGIAMgBjAGIAYgAyAGIAZgAzADgAYwA0ADIAYwA4ADkA
+MABhAGQANgAxADEAOAA3ADEAYgBiADcAZQAwADcALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBj
+AHQATgBhAG0AZQAAAAAAUwBUAF8ANABiADIAYwBiAGIAMgBiAGYAMwA4AGMANAAyAGMAOAA5ADAA
+YQBkADYAMQAxADgANwAxAGIAYgA3AGUAMAA3AAAANAAIAAEAUAByAG8AZAB1AGMAdABWAGUAcgBz
+AGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgACAABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMA
+aQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAEQ3AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C2F8DF4-E36A-4406-A33A-6A076CADCB21}"
+      DTS:From="Package\count number of finalists"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\display number of rows" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="194.666666666667,42.6666666666667"
+          Id="Package\count number of finalists"
+          TopLeft="268.124996004626,74.5789487721848" />
+        <NodeLayout
+          Size="189.333333333334,42.6666666666667"
+          Id="Package\display number of rows"
+          TopLeft="346.249994840473,223.736846316554" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="365.458329337959,117.245615438851">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.4583321691804,106.491230877703"
+              Start="0,0"
+              End="75.4583321691804,98.9912308777028">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.2456154388514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49.2456154388514"
+                    Point2="0,53.2456154388514"
+                    Point3="4,53.2456154388514" />
+                  <mssgle:LineSegment
+                    End="71.4583321691804,53.2456154388514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="71.4583321691804,53.2456154388514"
+                    Point2="75.4583321691804,53.2456154388514"
+                    Point3="75.4583321691804,57.2456154388514" />
+                  <mssgle:LineSegment
+                    End="75.4583321691804,98.9912308777028" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\count number of finalists">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\count number of finalists\Excel Source"
+          TopLeft="246.874996321276,18.4736845582476" />
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\count number of finalists\Row Count"
+          TopLeft="234.999996498227,120.421054898207" />
+        <EdgeLayout
+          Id="Package\count number of finalists.Paths[Excel Source Output]"
+          TopLeft="318.208329654609,61.1403512249142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.208333156382,59.2807036732924"
+              Start="0,0"
+              End="-17.208333156382,51.7807036732924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6403518366462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6403518366462"
+                    Point2="0,29.6403518366462"
+                    Point3="-4,29.6403518366462" />
+                  <mssgle:LineSegment
+                    End="-13.208333156382,29.6403518366462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.208333156382,29.6403518366462"
+                    Point2="-17.208333156382,29.6403518366462"
+                    Point3="-17.208333156382,33.6403518366462" />
+                  <mssgle:LineSegment
+                    End="-17.208333156382,51.7807036732924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\count number of finalists\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1366 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/19/2021 9:04:34 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-NB4G1EBO"
+  DTS:CreatorName="LAPTOP-NB4G1EBO\maabc"
+  DTS:DTSID="{2F6C56E1-9654-4494-BE32-3D0B4809BDAB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{ED49686A-BD25-4016-AB77-39873DDDD684}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{6AC0CE32-0D80-4A59-9666-0F97140692DC}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\maabc\OneDrive\Documents\customer 2015_06.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{6061EFAA-0D48-40D9-A5FB-8E99B44FDFC8}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\maabc\OneDrive\Documents\customer2015_07.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7080C63E-799B-44D7-9EBF-2435BE4459BB}"
+      DTS:ObjectName="LAPTOP-NB4G1EBO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-NB4G1EBO;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0F00D915-655F-4AC1-8548-3750AA18EFCD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="inputfolderpath">
+      <DTS:VariableValue
+        DTS:DataType="8">Documents</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{B58C3190-2D78-426A-9579-6627C2D3811E}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachItemEnumerator"
+        DTS:Description="Documents"
+        DTS:DTSID="{0DACBC2B-132C-4A77-97C0-FBBB03BE91E8}"
+        DTS:ObjectName="{0DACBC2B-132C-4A77-97C0-FBBB03BE91E8}">
+        <DTS:PropertyExpression
+          DTS:Name="Description">@[User::inputfolderpath]</DTS:PropertyExpression>
+        <DTS:ObjectData />
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\customer"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1412A7FE-0170-4C01-AAFC-0DDCE97E15EA}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="customer"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\customer\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input].Columns[fname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="fname"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[fname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input].Columns[lname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="lname"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[lname]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of fname]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of fname]"
+                          name="Copy of fname"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[fname]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of lname]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of lname]"
+                          name="Copy of lname"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[lname]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\customer\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">customershort$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\customer\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[fname]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].ExternalColumns[fname]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[fname]"
+                          name="fname"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[lname]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].ExternalColumns[lname]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[lname]"
+                          name="lname"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].ExternalColumns[fname]"
+                          dataType="wstr"
+                          length="255"
+                          name="fname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].ExternalColumns[lname]"
+                          dataType="wstr"
+                          length="255"
+                          name="lname" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[fname]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[fname]"
+                          name="fname" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[lname]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[lname]"
+                          name="lname" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\customer\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[customershort]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\customer\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="fname"
+                          externalMetadataColumnId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[fname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[lname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="lname"
+                          externalMetadataColumnId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                          lineageId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output].Columns[lname]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                          dataType="wstr"
+                          length="20"
+                          name="fname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                          dataType="wstr"
+                          length="20"
+                          name="lname" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\customer\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\customer\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\customer.Paths[Data Conversion Output]"
+                  endId="Package\Foreach Loop Container\customer\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Foreach Loop Container\customer\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\customer.Paths[Excel Source Output]"
+                  endId="Package\Foreach Loop Container\customer\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Foreach Loop Container\customer\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\load"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{811A92B9-CA45-48D8-9A72-7FB6785AC482}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="load"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\load\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input].Columns[fname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="fname"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[fname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input].Columns[lname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="lname"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[lname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input].Columns[adress]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="adress"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[adress]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input].Columns[phonenumber]"
+                          cachedDataType="r8"
+                          cachedName="phonenumber"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[phonenumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input].Columns[regioncd]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="regioncd"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[regioncd]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[dc_fname]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[dc_fname]"
+                          name="dc_fname"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[fname]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[dc_lname]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[dc_lname]"
+                          name="dc_lname"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[lname]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of adress]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of adress]"
+                          name="Copy of adress"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[adress]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of phonenumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="13"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of phonenumber]"
+                          name="Copy of phonenumber"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[phonenumber]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of regioncd]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of regioncd]"
+                          name="Copy of regioncd"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[regioncd]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\load\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">customer$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\load\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[id]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[id]"
+                          name="id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[fname]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[fname]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[fname]"
+                          name="fname"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[lname]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[lname]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[lname]"
+                          name="lname"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[adress]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[adress]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[adress]"
+                          name="adress"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[phonenumber]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[phonenumber]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[phonenumber]"
+                          name="phonenumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[regioncd]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[regioncd]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[regioncd]"
+                          name="regioncd"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[joinkey]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[joinkey]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[joinkey]"
+                          name="joinkey"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[id]"
+                          dataType="r8"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[fname]"
+                          dataType="wstr"
+                          length="255"
+                          name="fname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[lname]"
+                          dataType="wstr"
+                          length="255"
+                          name="lname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[adress]"
+                          dataType="wstr"
+                          length="255"
+                          name="adress" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[phonenumber]"
+                          dataType="r8"
+                          name="phonenumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[regioncd]"
+                          dataType="wstr"
+                          length="255"
+                          name="regioncd" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].ExternalColumns[joinkey]"
+                          dataType="r8"
+                          name="joinkey" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[id]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[id]"
+                          name="id" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[fname]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[fname]"
+                          name="fname" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[lname]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[lname]"
+                          name="lname" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[adress]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[adress]"
+                          name="adress" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[phonenumber]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[phonenumber]"
+                          name="phonenumber" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[regioncd]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[regioncd]"
+                          name="regioncd" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[joinkey]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[joinkey]"
+                          name="joinkey" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\load\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[customer12]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\load\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                          cachedDataType="r8"
+                          cachedName="id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[joinkey]"
+                          cachedDataType="r8"
+                          cachedName="joinkey"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[joinkey]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[joinkey]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="fname"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[fname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[lname]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="lname"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[lname]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[adress]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="adress"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[adress]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[adress]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[phonenumber]"
+                          cachedDataType="r8"
+                          cachedName="phonenumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[phonenumber]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[phonenumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[regioncd]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="regioncd"
+                          externalMetadataColumnId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[regioncd]"
+                          lineageId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output].Columns[regioncd]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                          dataType="wstr"
+                          length="20"
+                          name="fname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                          dataType="wstr"
+                          length="20"
+                          name="lname" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[adress]"
+                          dataType="wstr"
+                          length="20"
+                          name="adress" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[phonenumber]"
+                          dataType="i4"
+                          name="phonenumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[regioncd]"
+                          dataType="wstr"
+                          length="29"
+                          name="regioncd" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[joinkey]"
+                          dataType="i4"
+                          name="joinkey" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\load\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\load\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\load\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\load.Paths[Data Conversion Output]"
+                  endId="Package\Foreach Loop Container\load\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Foreach Loop Container\load\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\load.Paths[Excel Source Output]"
+                  endId="Package\Foreach Loop Container\load\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Foreach Loop Container\load\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8D96FD3E-0A26-4421-99DC-749A5B8411F8}"
+          DTS:From="Package\Foreach Loop Container\load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\customer" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="100,42.6666666666667"
+          Id="Package\Foreach Loop Container\load"
+          TopLeft="38.1666576142113,54.4210558769776" />
+        <NodeLayout
+          Size="124,42.6666666666667"
+          Id="Package\Foreach Loop Container\customer"
+          TopLeft="37.5416576235247,137.894741658689" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="88.1666576142113,97.0877225436443">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.3750000093133,40.8070191150448"
+              Start="0,0"
+              End="11.3750000093133,33.3070191150448">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4035095575224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4035095575224"
+                    Point2="0,20.4035095575224"
+                    Point3="4,20.4035095575224" />
+                  <mssgle:LineSegment
+                    End="7.37500000931334,20.4035095575224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.37500000931334,20.4035095575224"
+                    Point2="11.3750000093133,20.4035095575224"
+                    Point3="11.3750000093133,24.4035095575224" />
+                  <mssgle:LineSegment
+                    End="11.3750000093133,33.3070191150448" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205.333333333334,280.666666666667"
+          Size="205.333333333334,323.333333333334"
+          Id="Package\Foreach Loop Container"
+          TopLeft="569.374991515651,75.2631593113791" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\load">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\load\Excel Source"
+          TopLeft="21.5,5.50000000000004" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\load\OLE DB Destination"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\load\Data Conversion"
+          TopLeft="13.5,108.166666666667" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\load.Paths[Excel Source Output]"
+          TopLeft="92.8333333333333,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\load.Paths[Data Conversion Output]"
+          TopLeft="92.8333333333334,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\load\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\load\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\customer\Excel Source"
+          TopLeft="238.333333333333,60" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\customer\Data Conversion"
+          TopLeft="444.666666666667,145.333333333333" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\customer.Paths[Excel Source Output]"
+          TopLeft="309.666666666667,102.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.333333333333,42.6666666666667"
+              Start="0,0"
+              End="214.333333333333,35.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3333333333333"
+                    Point2="0,21.3333333333333"
+                    Point3="4,21.3333333333333" />
+                  <mssgle:LineSegment
+                    End="210.333333333333,21.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.333333333333,21.3333333333333"
+                    Point2="214.333333333333,21.3333333333333"
+                    Point3="214.333333333333,25.3333333333333" />
+                  <mssgle:LineSegment
+                    End="214.333333333333,35.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\customer\OLE DB Destination"
+          TopLeft="260.666666666667,219.333333333333" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\customer.Paths[Data Conversion Output]"
+          TopLeft="524,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-176,31.3333333333333"
+              Start="0,0"
+              End="-176,23.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.6666666666667"
+                    Point2="0,15.6666666666667"
+                    Point3="-4,15.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-172,15.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-172,15.6666666666667"
+                    Point2="-176,15.6666666666667"
+                    Point3="-176,19.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-176,23.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\customer\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\customer\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

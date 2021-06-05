@@ -1,0 +1,1070 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2021 3:25:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-NB4G1EBO"
+  DTS:CreatorName="LAPTOP-NB4G1EBO\maabc"
+  DTS:DTSID="{85BE3966-66BD-4DC9-BFFC-4A40A7628EED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{DCE505E6-649B-43A9-A1B0-75F0836DCE68}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{D0FD0B26-90A6-476F-8262-5D6382AB5264}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\maabc\OneDrive\Documents\exwork.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-NB4G1EBO]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1C786CBA-2C60-4887-8CED-F9A3463E19C5}"
+      DTS:ObjectName="LAPTOP-NB4G1EBO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-NB4G1EBO;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-NB4G1EBO 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{40A542BF-2D75-4AA0-8792-C3B16508C37C}"
+      DTS:ObjectName="LAPTOP-NB4G1EBO 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-NB4G1EBO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\delete any old rows from tblseries table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7CE43312-EA77-4990-9EB5-8F84761BEED7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="delete any old rows from tblseries table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C786CBA-2C60-4887-8CED-F9A3463E19C5}"
+          SQLTask:SqlStatementSource="delete from tblseries" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\import rows from excel workbook into series table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9E621F9E-C476-4C6C-B6AD-D35D75DF3715}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="import rows from excel workbook into series table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\import rows from excel workbook into series table\combine genders"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="combine genders"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3].Columns[series]"
+                      cachedDataType="r8"
+                      cachedName="series"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[series]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[series]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3].Columns[start date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="start date"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[start date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[start date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3].Columns[finish date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="finish date"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[finish date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[finish date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="gender"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[gender]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3].Columns[male winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="male winner"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[male winner]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[winner]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1]"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1].Columns[series]"
+                      cachedDataType="r8"
+                      cachedName="series"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[series]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[series]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1].Columns[start date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="start date"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[start date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[start date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1].Columns[finish date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="finish date"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[finish date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[finish date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="gender"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[gender]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1].Columns[female winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="female winner"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[female winner]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[winner]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[series]"
+                      dataType="r8"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[series]"
+                      name="series" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[winner]"
+                      name="winner" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[start date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[start date]"
+                      name="start date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[finish date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[finish date]"
+                      name="finish date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[gender]"
+                      name="gender" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import rows from excel workbook into series table\females"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="females"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import rows from excel workbook into series table\females.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[series]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[series]"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[series]"
+                      name="series"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[female winner]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[winner]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[female winner]"
+                      name="female winner"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[start date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[start date]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[start date]"
+                      name="start date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[finish date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[finish date]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[finish date]"
+                      name="finish date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[gender]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].Columns[gender]"
+                      name="gender"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[series]"
+                      dataType="r8"
+                      name="series" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[winner]"
+                      dataType="wstr"
+                      length="255"
+                      name="winner" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[start date]"
+                      dataType="wstr"
+                      length="255"
+                      name="start date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[finish date]"
+                      dataType="wstr"
+                      length="255"
+                      name="finish date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="gender" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[series]"
+                      dataType="r8"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[series]"
+                      name="series" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[winner]"
+                      name="winner" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[start date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[start date]"
+                      name="start date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[finish date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[finish date]"
+                      name="finish date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[gender]"
+                      name="gender" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import rows from excel workbook into series table\males"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="males"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import rows from excel workbook into series table\males.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[series]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[series]"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[series]"
+                      name="series"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[male winner]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[winner]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[male winner]"
+                      name="male winner"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[start date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[start date]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[start date]"
+                      name="start date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[finish date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[finish date]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[finish date]"
+                      name="finish date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[gender]"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].Columns[gender]"
+                      name="gender"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[series]"
+                      dataType="r8"
+                      name="series" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[winner]"
+                      dataType="wstr"
+                      length="255"
+                      name="winner" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[start date]"
+                      dataType="wstr"
+                      length="255"
+                      name="start date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[finish date]"
+                      dataType="wstr"
+                      length="255"
+                      name="finish date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="gender" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[series]"
+                      dataType="r8"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[series]"
+                      name="series" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[winner]"
+                      name="winner" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[start date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[start date]"
+                      name="start date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[finish date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[finish date]"
+                      name="finish date" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[gender]"
+                      name="gender" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\import rows from excel workbook into series table\series table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="series table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[worker]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\import rows from excel workbook into series table\series table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-NB4G1EBO 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NB4G1EBO 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].Columns[series]"
+                      cachedDataType="r8"
+                      cachedName="series"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[series]"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[series]" />
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].Columns[winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="winner"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[winner]"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[winner]" />
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].Columns[start date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="start date"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[start date]"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[start date]" />
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].Columns[finish date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="finish date"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[finish date]"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[finish date]" />
+                    <inputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="gender"
+                      externalMetadataColumnId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[gender]"
+                      lineageId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1].Columns[gender]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[series]"
+                      dataType="i4"
+                      name="series" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[winner]"
+                      dataType="wstr"
+                      length="35"
+                      name="winner" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[start date]"
+                      dataType="dbDate"
+                      name="start date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[finish date]"
+                      dataType="dbDate"
+                      name="finish date" />
+                    <externalMetadataColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="25"
+                      name="gender" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\import rows from excel workbook into series table\series table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\series table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\import rows from excel workbook into series table\series table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\import rows from excel workbook into series table\series table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\import rows from excel workbook into series table.Paths[Excel Source Output]"
+              endId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 3]"
+              name="Excel Source Output"
+              startId="Package\import rows from excel workbook into series table\males.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\import rows from excel workbook into series table.Paths[Excel Source Output1]"
+              endId="Package\import rows from excel workbook into series table\combine genders.Inputs[Union All Input 1]"
+              name="Excel Source Output"
+              startId="Package\import rows from excel workbook into series table\females.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\import rows from excel workbook into series table.Paths[Union All Output 1]"
+              endId="Package\import rows from excel workbook into series table\series table.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\import rows from excel workbook into series table\combine genders.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AEB45D79-6601-4D54-B712-91385749F015}"
+      DTS:From="Package\delete any old rows from tblseries table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\import rows from excel workbook into series table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="264,42.6666666666667"
+          Id="Package\delete any old rows from tblseries table"
+          TopLeft="365.624994551763,7.105427357601E-15" />
+        <NodeLayout
+          Size="313.333333333334,42.6666666666667"
+          Id="Package\import rows from excel workbook into series table"
+          TopLeft="323.624995706603,107.342106615407" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="497.624994551763,42.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.3333321784933,64.6754399487407"
+              Start="0,0"
+              End="-17.3333321784933,57.1754399487407">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3377199743703" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.3377199743703"
+                    Point2="0,32.3377199743703"
+                    Point3="-4,32.3377199743703" />
+                  <mssgle:LineSegment
+                    End="-13.3333321784933,32.3377199743703" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.3333321784933,32.3377199743703"
+                    Point2="-17.3333321784933,32.3377199743703"
+                    Point3="-17.3333321784933,36.3377199743703" />
+                  <mssgle:LineSegment
+                    End="-17.3333321784933,57.1754399487407" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\import rows from excel workbook into series table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="108,42.6666666666667"
+          Id="Package\import rows from excel workbook into series table\males"
+          TopLeft="212.857142857143,18.8095238095238" />
+        <NodeLayout
+          Size="117.333333333334,42.6666666666667"
+          Id="Package\import rows from excel workbook into series table\females"
+          TopLeft="445,24.5238095238095" />
+        <NodeLayout
+          Size="161.333333333334,42.6666666666667"
+          Id="Package\import rows from excel workbook into series table\combine genders"
+          TopLeft="309.285714285714,112.380952380952" />
+        <NodeLayout
+          Size="134,42.6666666666667"
+          Id="Package\import rows from excel workbook into series table\series table"
+          TopLeft="293.571428571429,218.809523809524" />
+        <EdgeLayout
+          Id="Package\import rows from excel workbook into series table.Paths[Union All Output 1]"
+          TopLeft="389.952380952381,155.047619047619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.3809523809524,63.7619047619048"
+              Start="0,0"
+              End="-29.3809523809524,56.2619047619048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.8809523809524" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.8809523809524"
+                    Point2="0,31.8809523809524"
+                    Point3="-4,31.8809523809524" />
+                  <mssgle:LineSegment
+                    End="-25.3809523809524,31.8809523809524" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.3809523809524,31.8809523809524"
+                    Point2="-29.3809523809524,31.8809523809524"
+                    Point3="-29.3809523809524,35.8809523809524" />
+                  <mssgle:LineSegment
+                    End="-29.3809523809524,56.2619047619048" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import rows from excel workbook into series table.Paths[Excel Source Output1]"
+          TopLeft="503.666666666667,67.1904761904762">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88.1587301587302,45.1904761904762"
+              Start="0,0"
+              End="-88.1587301587302,37.6904761904762">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8480243161094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8480243161094"
+                    Point2="0,26.8480243161094"
+                    Point3="-4,26.8480243161094" />
+                  <mssgle:LineSegment
+                    End="-84.1587301587302,26.8480243161094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84.1587301587302,26.8480243161094"
+                    Point2="-88.1587301587302,26.8480243161094"
+                    Point3="-88.1587301587302,30.8480243161094" />
+                  <mssgle:LineSegment
+                    End="-88.1587301587302,37.6904761904762" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\import rows from excel workbook into series table.Paths[Excel Source Output]"
+          TopLeft="266.857142857143,61.4761904761905">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97.5396825396826,50.9047619047619"
+              Start="0,0"
+              End="97.5396825396826,43.4047619047619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2429272854805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.2429272854805"
+                    Point2="0,30.2429272854805"
+                    Point3="4,30.2429272854805" />
+                  <mssgle:LineSegment
+                    End="93.5396825396826,30.2429272854805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.5396825396826,30.2429272854805"
+                    Point2="97.5396825396826,30.2429272854805"
+                    Point3="97.5396825396826,34.2429272854805" />
+                  <mssgle:LineSegment
+                    End="97.5396825396826,43.4047619047619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\import rows from excel workbook into series table\males">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\import rows from excel workbook into series table\females">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\import rows from excel workbook into series table\series table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
